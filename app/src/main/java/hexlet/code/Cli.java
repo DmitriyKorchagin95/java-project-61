@@ -4,6 +4,9 @@ import java.util.Scanner;
 
 public class Cli {
 
+    private Cli() {
+    }
+
     public static void askName() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("May I have your name?");
