@@ -2,15 +2,11 @@ package hexlet.code.games;
 
 import hexlet.code.util.Round;
 
-import java.util.Arrays;
 import java.util.Random;
 
-public class Progression implements Game {
-    private final Random random;
-
-    public Progression() {
-        this.random = new Random();
-    }
+public record Progression(Random random) implements Game {
+    private static final int MIN_RANDOM_VALUE = 5;
+    private static final int MAX_RANDOM_VALUE = 10;
 
     @Override
     public String getRule() {
@@ -22,24 +18,39 @@ public class Progression implements Game {
         int[] progression = createProgression();
         int hiddenIndex = random.nextInt(progression.length);
         String correctAnswer = String.valueOf(progression[hiddenIndex]);
-        String progressionWithHiddenElement = Arrays.toString(progression)
-                .replace(",", "")
-                .replace("[", "")
-                .replace("]", "")
-                .replace(correctAnswer, "..");
-        final String question = String.format("Question: %s\nYour answer: ", progressionWithHiddenElement);
+        String question = generateQuestion(progression, hiddenIndex);
         return new Round(question, correctAnswer);
     }
 
     public int[] createProgression() {
-        int[] progression = new int[random.nextInt(6, 10)];
-        int start = random.nextInt(1, 9);
-        int step = random.nextInt(2, 8);
+        final int[] progression = new int[random.nextInt(MIN_RANDOM_VALUE, MAX_RANDOM_VALUE)];
+        final int start = random.nextInt(MIN_RANDOM_VALUE, MAX_RANDOM_VALUE);
+        final int step = random.nextInt(MIN_RANDOM_VALUE, MAX_RANDOM_VALUE);
 
         for (int i = 0; i < progression.length; i++) {
             progression[i] = start + i * step;
         }
 
         return progression;
+    }
+
+    private String generateQuestion(int[] progression, int index) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Question: ");
+
+        for (int i = 0; i < progression.length; i++) {
+            if (i == index) {
+                sb.append("..");
+            } else {
+                sb.append(progression[i]);
+            }
+
+            if (i < progression.length - 1) {
+                sb.append(" ");
+            }
+        }
+
+        sb.append("\nYour answer: ");
+        return sb.toString();
     }
 }

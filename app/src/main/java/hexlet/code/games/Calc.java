@@ -4,12 +4,10 @@ import hexlet.code.util.Round;
 
 import java.util.Random;
 
-public class Calc implements Game {
-    private final Random random;
-
-    public Calc() {
-        this.random = new Random();
-    }
+public record Calc(Random random) implements Game {
+    private static final int MIN_RANDOM_VALUE = -100;
+    private static final int MAX_RANDOM_VALUE = 100;
+    private static final char[] OPERATIONS = {'+', '-', '*'};
 
     @Override
     public String getRule() {
@@ -18,16 +16,18 @@ public class Calc implements Game {
 
     @Override
     public Round nextRound() {
-        char[] operations = {'+', '-', '*'};
-        int operand1 = random.nextInt(-10, 10);
-        int operand2 = random.nextInt(-10, 10);
-        char operation = operations[random.nextInt(operations.length)];
-        final String question = String.format("Question: %s %s %s\nYour answer: ", operand1, operation, operand2);
+        final int firstOperand = random.nextInt(MIN_RANDOM_VALUE, MAX_RANDOM_VALUE);
+        final int secondOperand = random.nextInt(MIN_RANDOM_VALUE, MAX_RANDOM_VALUE);
+        final char operation = OPERATIONS[random.nextInt(OPERATIONS.length)];
+        String question = String
+                .format("Question: %s %s %s%nYour answer: ", firstOperand, operation, secondOperand);
+
         String correctAnswer = switch (operation) {
-            case '+' -> String.valueOf(operand1 + operand2);
-            case '-' -> String.valueOf(operand1 - operand2);
-            default -> String.valueOf(operand1 * operand2);
+            case '+' -> String.valueOf(firstOperand + secondOperand);
+            case '-' -> String.valueOf(firstOperand - secondOperand);
+            default -> String.valueOf(firstOperand * secondOperand);
         };
+
         return new Round(question, correctAnswer);
     }
 }

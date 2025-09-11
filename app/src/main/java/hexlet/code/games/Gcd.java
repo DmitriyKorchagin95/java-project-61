@@ -4,11 +4,9 @@ import hexlet.code.util.Round;
 
 import java.util.Random;
 
-public class Gcd implements Game {
-    private final Random random = new Random();
-
-    public Gcd() {
-    }
+public record Gcd(Random random) implements Game {
+    private static final int MIN_RANDOM_VALUE = 1;
+    private static final int MAX_RANDOM_VALUE = 100;
 
     @Override
     public String getRule() {
@@ -17,9 +15,9 @@ public class Gcd implements Game {
 
     @Override
     public Round nextRound() {
-        final int firstNumber = random.nextInt(1, 100);
-        final int secondNumber = random.nextInt(1, 100);
-        final String question = String.format("Question: %s %s\nYour answer: ", firstNumber, secondNumber);
+        final int firstNumber = random.nextInt(MIN_RANDOM_VALUE, MAX_RANDOM_VALUE);
+        final int secondNumber = random.nextInt(MIN_RANDOM_VALUE, MAX_RANDOM_VALUE);
+        String question = String.format("Question: %s %s%nYour answer: ", firstNumber, secondNumber);
         String correctAnswer = String.valueOf(gcd(firstNumber, secondNumber));
         return new Round(question, correctAnswer);
     }

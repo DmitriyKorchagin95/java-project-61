@@ -13,6 +13,6 @@ public final class Cli {
                 Welcome to the Brain Games!
                 May I have your name?\s""");
 
-        System.out.printf("Hello, %s!\n", in.next());
+        System.out.printf("Hello, %s!%n", in.nextLine().trim());
     }
 }

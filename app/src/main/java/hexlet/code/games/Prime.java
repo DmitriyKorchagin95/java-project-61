@@ -4,12 +4,10 @@ import hexlet.code.util.Round;
 
 import java.util.Random;
 
-public class Prime implements Game {
-    private final Random random;
-
-    public Prime() {
-        this.random = new Random();
-    }
+public record Prime(Random random) implements Game {
+    private static final int FIRST_ODD_DIVISOR = 3;
+    private static final int MIN_RANDOM_VALUE = 2;
+    private static final int MAX_RANDOM_VALUE = 100;
 
     @Override
     public String getRule() {
@@ -18,13 +16,14 @@ public class Prime implements Game {
 
     @Override
     public Round nextRound() {
-        final int randomNumber = random.nextInt(2, 100);
-        final String question = String.format("Question: %s\nYour answer: ", randomNumber);
+        final int randomNumber = random.nextInt(MIN_RANDOM_VALUE, MAX_RANDOM_VALUE);
+        String question = String.format("Question: %s%nYour answer: ", randomNumber);
         String correctAnswer = isPrime(randomNumber) ? "yes" : "no";
         return new Round(question, correctAnswer);
     }
 
     private boolean isPrime(int number) {
+
         if (number < 2) {
             return false;
         }
@@ -37,7 +36,7 @@ public class Prime implements Game {
             return false;
         }
 
-        for (int i = 3; i * i <= number; i += 2) {
+        for (int i = FIRST_ODD_DIVISOR; i * i <= number; i += 2) {
             if (number % i == 0) {
                 return false;
             }
