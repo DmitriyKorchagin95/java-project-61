@@ -6,4 +6,4 @@
 [![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=DmitriyKorchagin95_java-project-61&metric=duplicated_lines_density)](https://sonarcloud.io/summary/new_code?id=DmitriyKorchagin95_java-project-61)
 
 ### Ascinema demo
-[![asciicast](https://asciinema.org/a/vUYbhrtwc5s0uD55l2nqgvgQZ.svg)](https://asciinema.org/a/vUYbhrtwc5s0uD55l2nqgvgQZ)
+[![asciicast](https://asciinema.org/a/Uat6DPV4Ef0NjvYF6ONdQWMNO.svg)](https://asciinema.org/a/Uat6DPV4Ef0NjvYF6ONdQWMNO)

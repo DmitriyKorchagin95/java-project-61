@@ -1,4 +1,4 @@
-package hexlet.code;
+package hexlet.code.util;
 
 import java.util.Scanner;
 
@@ -7,7 +7,7 @@ public final class Menu {
     private Menu() {
     }
 
-    public static int getMenu(Scanner scanner) {
+    public static void getMenu() {
         System.out.print("""
                 \nPlease enter the game number and press Enter.
                 1 - Greet
@@ -18,6 +18,9 @@ public final class Menu {
                 6 - Prime
                 0 - Exit
                 Your choice:\s""");
-        return scanner.nextInt();
+    }
+
+    public static int getGameNumber(Scanner in) {
+        return in.nextInt();
     }
 }
