@@ -5,5 +5,13 @@
 [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=DmitriyKorchagin95_java-project-61&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=DmitriyKorchagin95_java-project-61)
 [![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=DmitriyKorchagin95_java-project-61&metric=duplicated_lines_density)](https://sonarcloud.io/summary/new_code?id=DmitriyKorchagin95_java-project-61)
 
-### Ascinema demo
-[![asciicast](https://asciinema.org/a/Uat6DPV4Ef0NjvYF6ONdQWMNO.svg)](https://asciinema.org/a/Uat6DPV4Ef0NjvYF6ONdQWMNO)
+### Ascinema Even game demo
+[![asciicast](https://asciinema.org/a/NO7UDLTYzUsbU9Art7YEWDuIH.svg)](https://asciinema.org/a/NO7UDLTYzUsbU9Art7YEWDuIH)
+### Ascinema Calc game demo
+[![asciicast](https://asciinema.org/a/xeuNIJ23i6rMqxmRFOay5uoXh.svg)](https://asciinema.org/a/xeuNIJ23i6rMqxmRFOay5uoXh)
+### Ascinema Gcd game demo
+[![asciicast](https://asciinema.org/a/rFa1f6dI3iyK2es6HHCTJ4ARP.svg)](https://asciinema.org/a/rFa1f6dI3iyK2es6HHCTJ4ARP)
+### Ascinema Progression game demo
+[![asciicast](https://asciinema.org/a/cpLfuc95389qCsRHSL4fdjtbk.svg)](https://asciinema.org/a/cpLfuc95389qCsRHSL4fdjtbk)
+### Ascinema Prime game demo
+[![asciicast](https://asciinema.org/a/CS5dcpOF2SLZ5lLEs93ml0nER.svg)](https://asciinema.org/a/CS5dcpOF2SLZ5lLEs93ml0nER)
