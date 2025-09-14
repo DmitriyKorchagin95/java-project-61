@@ -1,28 +1,21 @@
 package hexlet.code.games;
 
-import hexlet.code.util.Round;
-
 import java.util.Random;
 
-public record Prime(Random random) implements Game {
+public record Prime() {
+    private static final String RULES = "Answer 'yes' if given number is prime. Otherwise answer 'no'.";
     private static final int FIRST_ODD_DIVISOR = 3;
     private static final int MIN_RANDOM_VALUE = 2;
     private static final int MAX_RANDOM_VALUE = 100;
 
-    @Override
-    public String getRule() {
-        return "Answer 'yes' if given number is prime. Otherwise answer 'no'.";
-    }
-
-    @Override
-    public Round nextRound() {
+    public static String[] nextRound(Random random) {
         final int randomNumber = random.nextInt(MIN_RANDOM_VALUE, MAX_RANDOM_VALUE);
-        String question = String.format("Question: %s%nYour answer: ", randomNumber);
+        String question = String.valueOf(randomNumber);
         String correctAnswer = isPrime(randomNumber) ? "yes" : "no";
-        return new Round(question, correctAnswer);
+        return new String[]{RULES, question, correctAnswer};
     }
 
-    private boolean isPrime(int number) {
+    private static boolean isPrime(int number) {
 
         if (number < 2) {
             return false;

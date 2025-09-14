@@ -1,16 +1,21 @@
 package hexlet.code.util;
 
-import hexlet.code.games.Game;
+import hexlet.code.games.Even;
+import hexlet.code.games.Calc;
+import hexlet.code.games.Gcd;
+import hexlet.code.games.Prime;
+import hexlet.code.games.Progression;
 
+import java.util.Random;
 import java.util.Scanner;
 
-public final class Engine {
+public record Engine() {
     public static final int TOTAL_ROUNDS = 3;
+    public static final int RULES_INDEX = 0;
+    public static final int QUESTION_INDEX = 1;
+    public static final int CORRECT_ANSWER_INDEX = 2;
 
-    private Engine() {
-    }
-
-    public static void getMenu() {
+    public static void printMenu() {
         System.out.print("""
                 Please enter the game number and press Enter.
                 1 - Greet
@@ -23,26 +28,40 @@ public final class Engine {
                 Your choice:\s""");
     }
 
-    public static String getGameNumber(Scanner in) {
+    public static String readChoice(Scanner in) {
         return in.nextLine().trim();
     }
 
-    public static void run(Game game, Scanner in) {
+    private static String[] nextRoundOf(String gameNumber, Random random) {
+        return switch (gameNumber) {
+            case "2" -> Even.nextRound(random);
+            case "3" -> Calc.nextRound(random);
+            case "4" -> Gcd.nextRound(random);
+            case "5" -> Progression.nextRound(random);
+            case "6" -> Prime.nextRound(random);
+            default -> null;
+        };
+    }
+
+    public static void run(String gameNumber, Random random, Scanner in) {
+        String username = Cli.greetUser(in);
+        String[] round = nextRoundOf(gameNumber, random);
+
+        if (gameNumber.equals("1") || round == null) {
+            return;
+        }
+
+        String rules = round[RULES_INDEX];
+        System.out.println(rules);
         int roundNumber = 0;
 
-        System.out.print("""
-                Welcome to the Brain Games!
-                May I have your name?\s""");
-
-        String username = in.nextLine().trim();
-        System.out.printf("Hello, %s!%n", username);
-        System.out.println(game.getRule());
-
         while (roundNumber < TOTAL_ROUNDS) {
-            Round round = game.nextRound();
-            System.out.print(round.question());
+            round = nextRoundOf(gameNumber, random);
+            String question = String.format("Question: %s%nYour answer: ", round[QUESTION_INDEX]);
+            System.out.print(question);
             String answer = in.nextLine().trim();
-            String correctAnswer = round.correctAnswer();
+            String correctAnswer = round[CORRECT_ANSWER_INDEX];
+
 
             if (answer.equalsIgnoreCase(correctAnswer)) {
                 System.out.println("Correct!");
@@ -61,4 +80,3 @@ public final class Engine {
         }
     }
 }
-
