@@ -1,18 +1,26 @@
 package hexlet.code.games;
 
+import hexlet.code.util.Engine;
+
 import java.util.Random;
+import java.util.Scanner;
 
 public record Progression(Random random) {
     private static final String RULES = "What number is missing in the progression?";
     private static final int MIN_RANDOM_VALUE = 5;
     private static final int MAX_RANDOM_VALUE = 10;
 
-    public static String[] nextRound(Random random) {
+    public static void run(Random random, Scanner in) {
+        String[][] rounds = new String[][] {nextRound(random), nextRound(random), nextRound(random)};
+        Engine.run(RULES, rounds, in);
+    }
+
+    private static String[] nextRound(Random random) {
         int[] progression = createProgression(random);
         int hiddenIndex = random.nextInt(progression.length);
         String correctAnswer = String.valueOf(progression[hiddenIndex]);
         String question = generateQuestion(progression, hiddenIndex);
-        return new String[]{RULES, question, correctAnswer};
+        return new String[]{question, correctAnswer};
     }
 
     private static int[] createProgression(Random random) {

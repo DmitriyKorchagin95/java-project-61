@@ -1,6 +1,9 @@
 package hexlet.code.games;
 
+import hexlet.code.util.Engine;
+
 import java.util.Random;
+import java.util.Scanner;
 
 public record Calc() {
     private static final String RULES = "What is the result of the expression?";
@@ -8,7 +11,12 @@ public record Calc() {
     private static final int MAX_RANDOM_VALUE = 10;
     private static final char[] OPERATIONS = {'+', '-', '*'};
 
-    public static String[] nextRound(Random random) {
+    public static void run(Random random, Scanner in) {
+        String[][] rounds = new String[][] {nextRound(random), nextRound(random), nextRound(random)};
+        Engine.run(RULES, rounds, in);
+    }
+
+    private static String[] nextRound(Random random) {
         final int firstOperand = random.nextInt(MIN_RANDOM_VALUE, MAX_RANDOM_VALUE);
         final int secondOperand = random.nextInt(MIN_RANDOM_VALUE, MAX_RANDOM_VALUE);
         final char operation = OPERATIONS[random.nextInt(OPERATIONS.length)];
@@ -20,6 +28,6 @@ public record Calc() {
             default -> String.valueOf(firstOperand * secondOperand);
         };
 
-        return new String[]{RULES, question, correctAnswer};
+        return new String[]{question, correctAnswer};
     }
 }
