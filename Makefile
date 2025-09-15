@@ -1,4 +1,8 @@
 # Makefile
-run-dist: # run app
-	cd app  && ./gradlew clean installDist
+run: # run app
 	./app/build/install/app/bin/app
+
+build: # build app
+	cd app  && ./gradlew build
+
+.PHONY: build
