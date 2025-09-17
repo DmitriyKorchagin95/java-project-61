@@ -1,22 +1,23 @@
 package hexlet.code.games;
 
-import hexlet.code.util.Engine;
+import hexlet.code.Engine;
 
-import java.util.Random;
-import java.util.Scanner;
+import java.util.random.RandomGenerator;
 
 public record Even() {
     private static final String RULES = "Answer 'yes' if the number is even, otherwise answer 'no'.";
     private static final int MIN_RANDOM_VALUE = 1;
     private static final int MAX_RANDOM_VALUE = 1000;
 
-    public static void run(Random random, Scanner in) {
-        String[][] rounds = new String[][] {nextRound(random), nextRound(random), nextRound(random)};
-        Engine.run(RULES, rounds, in);
+    public static void run() {
+        Engine.run(
+                RULES,
+                new String[][]{nextRound(), nextRound(), nextRound()}
+        );
     }
 
-    private static String[] nextRound(Random random) {
-        final int randomNumber = random.nextInt(MIN_RANDOM_VALUE, MAX_RANDOM_VALUE);
+    private static String[] nextRound() {
+        final int randomNumber = RandomGenerator.getDefault().nextInt(MIN_RANDOM_VALUE, MAX_RANDOM_VALUE);
         String question = String.valueOf(randomNumber);
         String correctAnswer = isEven(randomNumber) ? "yes" : "no";
         return new String[]{question, correctAnswer};

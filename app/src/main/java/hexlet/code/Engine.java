@@ -1,4 +1,4 @@
-package hexlet.code.util;
+package hexlet.code;
 
 import java.util.Scanner;
 
@@ -6,8 +6,13 @@ public record Engine() {
     private static final int QUESTION_INDEX = 0;
     private static final int CORRECT_ANSWER_INDEX = 1;
 
-    public static void run(String rules, String[][] rounds, Scanner in) {
-        String username = Cli.greetUser(in);
+    public static void run(String rules, String[][] rounds) {
+        final Scanner in = new Scanner(System.in);
+        System.out.print("""
+                Welcome to the Brain Games!
+                May I have your name?\s""");
+        String username = in.nextLine().trim();
+        System.out.printf("Hello, %s!%n", username);
         System.out.println(rules);
 
         for (String[] round : rounds) {
