@@ -1,5 +1,6 @@
 package hexlet.code;
 
+import hexlet.code.exception.UnknowGameException;
 import hexlet.code.games.Even;
 import hexlet.code.games.Calc;
 import hexlet.code.games.Gcd;
@@ -7,13 +8,11 @@ import hexlet.code.games.Progression;
 import hexlet.code.games.Prime;
 import hexlet.code.util.Cli;
 
-import java.util.Random;
 import java.util.Scanner;
 
 public class App {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         final Scanner in = new Scanner(System.in);
-        final Random random = new Random();
 
         System.out.print("""
                 Please enter the game number and press Enter.
@@ -26,14 +25,16 @@ public class App {
                 0 - Exit
                 Your choice:\s""");
 
-        switch (in.nextLine().trim()) {
-            case "1" -> Cli.greetUser(in);
-            case "2" -> Even.run(random, in);
-            case "3" -> Calc.run(random, in);
-            case "4" -> Gcd.run(random, in);
-            case "5" -> Progression.run(random, in);
-            case "6" -> Prime.run(random, in);
-            default -> System.exit(0);
+        String gameNumber = in.nextLine().trim();
+
+        switch (gameNumber) {
+            case "1" -> Cli.greetUser();
+            case "2" -> Even.run();
+            case "3" -> Calc.run();
+            case "4" -> Gcd.run();
+            case "5" -> Progression.run();
+            case "6" -> Prime.run();
+            default -> throw new UnknowGameException("Unknown game number: %s!".formatted(gameNumber));
         }
     }
 }
